@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/detailCharacterFragment"
+        android:icon="@drawable/ic_baseline_bathtub_24"
+        android:title="@string/detail_menu_text"/>
+    <item
+        android:id="@+id/seriesCharacterFragment"
+        android:icon="@drawable/ic_baseline_bathtub_24"
+        android:title="@string/series_menu_text"/>
+    <item
+        android:id="@+id/eventsCharacterFragment"
+        android:icon="@drawable/ic_baseline_bathtub_24"
+        android:title="@string/events_menu_text"/>
+</menu>

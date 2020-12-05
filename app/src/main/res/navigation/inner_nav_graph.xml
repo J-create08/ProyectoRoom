@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inner_nav_graph"
+    app:startDestination="@id/detailCharacterFragment">
+
+    <fragment
+        android:id="@+id/seriesCharacterFragment"
+        android:name="com.loguito.clase6.views.fragments.SeriesCharacterFragment"
+        android:label="fragment_series_character"
+        tools:layout="@layout/fragment_series_character" />
+    <fragment
+        android:id="@+id/eventsCharacterFragment"
+        android:name="com.loguito.clase6.views.fragments.EventsCharacterFragment"
+        android:label="fragment_events_character"
+        tools:layout="@layout/fragment_events_character" />
+    <fragment
+        android:id="@+id/detailCharacterFragment"
+        android:name="com.loguito.clase6.views.fragments.DetailCharacterFragment"
+        android:label="fragment_detail_character"
+        tools:layout="@layout/fragment_detail_character" />
+</navigation>

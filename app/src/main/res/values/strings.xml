@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Clase6</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_text">Ha ocurrido un error</string>
+    <string name="detail_menu_text">Detalle</string>
+    <string name="series_menu_text">Series</string>
+    <string name="events_menu_text">Eventos</string>
+</resources>
