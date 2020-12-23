@@ -1,4 +1,4 @@
-package com.loguito.clase6.views.adapters
+package com.loguito.clase6.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.loguito.clase6.R
-import com.loguito.clase6.views.network.models.Character
+import com.loguito.clase6.network.models.Character
 import kotlinx.android.synthetic.main.marvel_character_cell.view.*
 
 class MarvelListAdapter(val clickListener: (Character) -> Unit) : RecyclerView.Adapter<MarvelListAdapter.MarvelCharacterViewHolder>() {

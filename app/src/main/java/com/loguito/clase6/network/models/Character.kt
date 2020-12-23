@@ -1,4 +1,4 @@
-package com.loguito.clase6.views.network.models
+package com.loguito.clase6.network.models
 
 data class Character(
     val id: Int,
