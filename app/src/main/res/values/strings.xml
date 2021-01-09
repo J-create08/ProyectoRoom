@@ -6,4 +6,5 @@
     <string name="detail_menu_text">Detalle</string>
     <string name="series_menu_text">Series</string>
     <string name="events_menu_text">Eventos</string>
+    <string name="search_text">Buscar...</string>
 </resources>

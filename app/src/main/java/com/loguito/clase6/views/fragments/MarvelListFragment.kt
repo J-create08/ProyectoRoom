@@ -1,25 +1,33 @@
 package com.loguito.clase6.views.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import com.google.android.material.snackbar.Snackbar
+import com.jakewharton.rxbinding4.widget.textChanges
 import com.loguito.clase6.R
 import com.loguito.clase6.adapters.MarvelListAdapter
 import com.loguito.clase6.viewmodels.MarvelListViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_marvel_list.*
+import java.util.concurrent.TimeUnit
 
 class MarvelListFragment : Fragment() {
     private val viewModel: MarvelListViewModel by viewModels()
+    private val disposables: CompositeDisposable = CompositeDisposable()
+
     private val adapter = MarvelListAdapter { character ->
         findNavController().navigate(R.id.action_marvelListFragment_to_bottomMenuFragment)
     }
@@ -31,6 +39,11 @@ class MarvelListFragment : Fragment() {
         // Inflate the layout for this fragment
         viewModel.getCharacterList()
         return inflater.inflate(R.layout.fragment_marvel_list, container, false)
+    }
+
+    override fun onDestroyView() {
+        disposables.clear()
+        super.onDestroyView()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,5 +71,14 @@ class MarvelListFragment : Fragment() {
         viewModel.getIsError().observe(viewLifecycleOwner) { isError ->
             Snackbar.make(parent, R.string.error_text, Snackbar.LENGTH_LONG).show()
         }
+
+        disposables.add(searchEditText.textChanges()
+            .skipInitialValue()
+            .debounce(300, TimeUnit.MILLISECONDS)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                adapter.filter.filter(it)
+            })
     }
 }
