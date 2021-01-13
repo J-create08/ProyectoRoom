@@ -7,4 +7,6 @@
     <string name="series_menu_text">Series</string>
     <string name="events_menu_text">Eventos</string>
     <string name="search_text">Buscar...</string>
+    <string name="favorites_text">Favorites</string>
+    <string name="favorites_menu_text">Favoritos</string>
 </resources>

@@ -6,11 +6,6 @@
     app:startDestination="@id/detailCharacterFragment">
 
     <fragment
-        android:id="@+id/seriesCharacterFragment"
-        android:name="com.loguito.clase6.views.fragments.SeriesCharacterFragment"
-        android:label="fragment_series_character"
-        tools:layout="@layout/fragment_series_character" />
-    <fragment
         android:id="@+id/eventsCharacterFragment"
         android:name="com.loguito.clase6.views.fragments.EventsCharacterFragment"
         android:label="fragment_events_character"
@@ -20,4 +15,9 @@
         android:name="com.loguito.clase6.views.fragments.DetailCharacterFragment"
         android:label="fragment_detail_character"
         tools:layout="@layout/fragment_detail_character" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.loguito.clase6.views.fragments.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>

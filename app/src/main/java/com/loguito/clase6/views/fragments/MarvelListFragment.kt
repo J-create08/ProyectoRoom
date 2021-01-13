@@ -17,16 +17,21 @@ import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding4.widget.textChanges
 import com.loguito.clase6.R
 import com.loguito.clase6.adapters.MarvelListAdapter
+import com.loguito.clase6.db.FavCharacter
+import com.loguito.clase6.network.models.Character
 import com.loguito.clase6.viewmodels.MarvelListViewModel
+import com.loguito.clase6.viewmodels.SaveCharViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_marvel_list.*
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 class MarvelListFragment : Fragment() {
     private val viewModel: MarvelListViewModel by viewModels()
     private val disposables: CompositeDisposable = CompositeDisposable()
+    val DBsaveViewModel: SaveCharViewModel by viewModels()
 
     private val adapter = MarvelListAdapter { character ->
         findNavController().navigate(R.id.action_marvelListFragment_to_bottomMenuFragment)
@@ -71,6 +76,11 @@ class MarvelListFragment : Fragment() {
         viewModel.getIsError().observe(viewLifecycleOwner) { isError ->
             Snackbar.make(parent, R.string.error_text, Snackbar.LENGTH_LONG).show()
         }
+
+        disposables.add(adapter.itemClicked
+            .subscribe {character ->
+                DBsaveViewModel.insertCharacter(FavCharacter(UUID.randomUUID().toString(), character.name, character.description, character.thumbnail.path))
+            })
 
         disposables.add(searchEditText.textChanges()
             .skipInitialValue()

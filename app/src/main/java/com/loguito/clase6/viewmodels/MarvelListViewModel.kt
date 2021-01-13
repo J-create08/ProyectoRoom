@@ -3,8 +3,10 @@ package com.loguito.clase6.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.loguito.clase6.db.CharacterDataBase
 import com.loguito.clase6.network.RetrofitProvider
 import com.loguito.clase6.network.models.Character
+import com.loguito.clase6.repository.CharacterRepository
 import io.reactivex.rxjava3.core.Observable
 
 class MarvelListViewModel : ViewModel() {
@@ -13,6 +15,7 @@ class MarvelListViewModel : ViewModel() {
     private val hash: String = "72e5ed53d1398abb831c3ceec263f18b"
     private val timestamp: String = "thesoer"
 
+
     //    private val characterListResponse: MutableLiveData<List<Character>> = MutableLiveData()
     private val isMakingRequest: MutableLiveData<Boolean> = MutableLiveData()
     private val isError: MutableLiveData<Boolean> = MutableLiveData()
@@ -20,6 +23,8 @@ class MarvelListViewModel : ViewModel() {
 //    fun getCharacterListResponse() : LiveData<List<Character>> {
 //        return characterListResponse
 //    }
+
+
 
     fun getIsLoading(): LiveData<Boolean> {
         return isMakingRequest

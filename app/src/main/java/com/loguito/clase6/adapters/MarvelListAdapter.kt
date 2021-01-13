@@ -9,11 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.loguito.clase6.R
 import com.loguito.clase6.network.models.Character
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.subjects.PublishSubject
 import kotlinx.android.synthetic.main.marvel_character_cell.view.*
 import java.util.*
 
 class MarvelListAdapter(val clickListener: (Character) -> Unit) :
     RecyclerView.Adapter<MarvelListAdapter.MarvelCharacterViewHolder>(), Filterable {
+
+    private val clicksAcceptor: PublishSubject<Character> = PublishSubject.create()
+    val itemClicked: Observable<Character> = clicksAcceptor.hide()
 
     var characterList: List<Character> = emptyList()
         set(value) {
@@ -39,6 +44,10 @@ class MarvelListAdapter(val clickListener: (Character) -> Unit) :
                 .into(itemView.characterImageView)
             itemView.setOnClickListener {
                 clickListener.invoke(character)
+            }
+
+            itemView.setOnClickListener {
+                clicksAcceptor.onNext(character)
             }
         }
     }
